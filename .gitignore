@@ -1,6 +1,13 @@
 # compiled output
 /node_modules
 
+# Terraform local data and state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
 # Logs
 logs
 *.log
