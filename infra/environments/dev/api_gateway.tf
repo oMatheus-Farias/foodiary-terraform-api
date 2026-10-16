@@ -31,16 +31,16 @@ resource "aws_apigatewayv2_integration" "hello" {
 }
 
 resource "aws_lambda_permission" "hello_from_api_gateway" {
-  statement_id  = "AllowExecutionFromDevHelloRoute"
+  statement_id  = "AllowExecutionFromDevPostHelloIdRoute"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.hello.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/${aws_apigatewayv2_stage.dev.name}/GET/hello"
+  source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/${aws_apigatewayv2_stage.dev.name}/POST/hello/*"
 }
 
 resource "aws_apigatewayv2_route" "hello" {
   api_id    = aws_apigatewayv2_api.main.id
-  route_key = "GET /hello"
+  route_key = "POST /hello/{id}"
   target    = "integrations/${aws_apigatewayv2_integration.hello.id}"
 
   depends_on = [aws_lambda_permission.hello_from_api_gateway]
