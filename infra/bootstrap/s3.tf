@@ -1,7 +1,15 @@
 data "aws_caller_identity" "current" {}
 
+data "aws_region" "current" {}
+
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "foodiary-terraform-state-${data.aws_caller_identity.current.id}"
+  bucket = format(
+    "foodiary-terraform-state-%s-%s-an",
+    data.aws_caller_identity.current.account_id,
+    data.aws_region.current.region
+  )
+
+  bucket_namespace = "account-regional"
 }
 
 resource "aws_s3_bucket_public_access_block" "terraform_state" {
