@@ -5,6 +5,8 @@
     "module": "nodenext",
     "target": "esnext",
     "types": [],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
