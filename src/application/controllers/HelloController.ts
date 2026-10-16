@@ -1,10 +1,12 @@
 import { Controller } from '@application/contracts/Controller';
 import { Injectable } from '@kernel/decorators/Injectable';
 import { Schema } from '@kernel/decorators/Schema';
-import { z } from 'zod';
+import { z } from 'zod/mini';
 
 const HelloSchema = z.object({
-  name: z.string('"name" must be a string').trim().min(1, '"name" cannot be empty'),
+  name: z
+    .string('"name" must be a string')
+    .check(z.trim(), z.minLength(1, { error: '"name" cannot be empty' })),
 });
 
 type HelloBody = z.infer<typeof HelloSchema>;

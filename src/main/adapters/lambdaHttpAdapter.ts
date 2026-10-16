@@ -11,7 +11,7 @@ import type {
   APIGatewayProxyEventV2WithJWTAuthorizer,
   APIGatewayProxyResultV2,
 } from 'aws-lambda';
-import { ZodError } from 'zod';
+import { core } from 'zod/mini';
 
 type Event = APIGatewayProxyEventV2 | APIGatewayProxyEventV2WithJWTAuthorizer;
 
@@ -40,7 +40,7 @@ export function lambdaHttpAdapter(controllerImpl: Constructor<Controller<any, un
         body: response.body ? JSON.stringify(response.body) : undefined,
       };
     } catch (error) {
-      if (error instanceof ZodError) {
+      if (error instanceof core.$ZodError) {
         return lambdaErrorResponse({
           statusCode: 400,
           code: ErrorCode.VALIDATION,
