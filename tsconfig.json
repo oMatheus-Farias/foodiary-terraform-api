@@ -2,9 +2,10 @@
   "compilerOptions": {
     // "rootDir": "./src",
     "outDir": "./dist",
-    "module": "nodenext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "target": "esnext",
-    "types": [],
+    "types": ["node", "aws-lambda"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
