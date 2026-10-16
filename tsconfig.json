@@ -19,6 +19,15 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@application/*": ["src/application/*"],
+      "@kernel/*": ["src/kernel/*"],
+      "@main/*": ["src/main/*"],
+      "@shared/*": ["src/shared/*"],
+      "@infra/*": ["src/infra/*"]
+    }
   }
 }

@@ -2,7 +2,7 @@ import { build } from 'esbuild';
 import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
 await build({
-  entryPoints: ['src/hello.ts'],
+  entryPoints: ['src/main/functions/hello.ts'],
   outfile: 'dist/hello.mjs',
   bundle: true,
   minify: true,
