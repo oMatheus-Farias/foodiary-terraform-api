@@ -4,8 +4,8 @@ provider "aws" {
   default_tags {
     tags = {
       ManagedBy   = "Terraform"
-      Project     = "foodiary-api"
-      Environment = "dev"
+      Project     = local.project_name
+      Environment = var.environment
     }
   }
 }

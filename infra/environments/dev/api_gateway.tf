@@ -1,11 +1,11 @@
 resource "aws_apigatewayv2_api" "main" {
-  name          = "dev-foodiary-api"
+  name          = "${var.environment}-${local.project_name}"
   protocol_type = "HTTP"
 }
 
 resource "aws_apigatewayv2_stage" "dev" {
   api_id      = aws_apigatewayv2_api.main.id
-  name        = "dev"
+  name        = var.environment
   auto_deploy = true
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.api_access.arn
