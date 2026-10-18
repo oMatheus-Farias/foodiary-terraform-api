@@ -9,24 +9,24 @@ data "aws_iam_policy_document" "lambda_assume_role" {
   }
 }
 
-resource "aws_iam_role" "hello" {
-  name               = "foodiary-api-dev-hello"
+resource "aws_iam_role" "sign_up" {
+  name               = "${local.project_name}-${var.environment}-sign-up"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 }
 
-data "aws_iam_policy_document" "hello_logs" {
+data "aws_iam_policy_document" "sign_up_logs" {
   statement {
     actions = [
       "logs:CreateLogStream",
       "logs:PutLogEvents",
     ]
 
-    resources = ["${aws_cloudwatch_log_group.hello.arn}:*"]
+    resources = ["${aws_cloudwatch_log_group.sign_up.arn}:*"]
   }
 }
 
-resource "aws_iam_role_policy" "hello_logs" {
-  name   = "foodiary-api-dev-hello-logs"
-  role   = aws_iam_role.hello.id
-  policy = data.aws_iam_policy_document.hello_logs.json
+resource "aws_iam_role_policy" "sign_up_logs" {
+  name   = "${local.project_name}-${var.environment}-sign-up-logs"
+  role   = aws_iam_role.sign_up.id
+  policy = data.aws_iam_policy_document.sign_up_logs.json
 }

@@ -1,5 +1,5 @@
-data "archive_file" "hello" {
+data "archive_file" "sign_up" {
   type        = "zip"
-  source_file = "${path.module}/../../../dist/hello.mjs"
-  output_path = "${path.module}/../../../dist/hello.zip"
+  source_file = "${path.module}/../../../dist/signUp.mjs"
+  output_path = "${path.module}/../../../dist/signUp.zip"
 }
