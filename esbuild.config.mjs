@@ -3,6 +3,7 @@ import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
 const entryPoints = {
   signUp: 'src/main/functions/auth/signUp.ts',
+  preSignUpTrigger: 'src/main/functions/auth/cognito/preSignUpTrigger.ts',
 };
 
 await build({
