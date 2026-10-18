@@ -1,9 +1,15 @@
 import { build } from 'esbuild';
 import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
+const entryPoints = {
+  signUp: 'src/main/functions/auth/signUp.ts',
+};
+
 await build({
-  entryPoints: ['src/main/functions/hello.ts'],
-  outfile: 'dist/hello.mjs',
+  entryPoints,
+  outdir: 'dist',
+  entryNames: '[name]',
+  outExtension: { '.js': '.mjs' },
   bundle: true,
   minify: true,
   sourcemap: false,
