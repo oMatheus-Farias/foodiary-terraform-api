@@ -7,6 +7,10 @@ resource "aws_cognito_user_pool" "main" {
   auto_verified_attributes = ["email"]
   username_attributes      = ["email"]
 
+  lambda_config {
+    pre_sign_up = module.pre_sign_up_trigger.arn
+  }
+
   admin_create_user_config {
     allow_admin_create_user_only = false
   }

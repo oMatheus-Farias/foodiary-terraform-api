@@ -26,14 +26,14 @@ resource "aws_apigatewayv2_integration" "sign_up" {
   api_id                 = aws_apigatewayv2_api.main.id
   integration_type       = "AWS_PROXY"
   integration_method     = "POST"
-  integration_uri        = aws_lambda_function.sign_up.invoke_arn
+  integration_uri        = module.sign_up.invoke_arn
   payload_format_version = "2.0"
 }
 
 resource "aws_lambda_permission" "sign_up_from_api_gateway" {
   statement_id  = "AllowExecutionFrom${var.environment}PostAuthSignUpRoute"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.sign_up.function_name
+  function_name = module.sign_up.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/${aws_apigatewayv2_stage.dev.name}/POST/auth/sign-up"
 
