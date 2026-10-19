@@ -17,3 +17,10 @@ module "auth" {
   source_account_id = data.aws_caller_identity.current.account_id
   distribution_path = "${path.module}/../../../dist"
 }
+
+module "dynamodb" {
+  source = "../../modules/dynamodb"
+
+  project_name = local.project_name
+  environment  = var.environment
+}

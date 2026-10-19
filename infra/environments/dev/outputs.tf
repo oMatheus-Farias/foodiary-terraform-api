@@ -7,3 +7,13 @@ output "pre_sign_up_trigger_function_name" {
   description = "Name of the Cognito pre-sign-up trigger Lambda function."
   value       = module.auth.pre_sign_up_trigger_function_name
 }
+
+output "dynamodb_table_name" {
+  description = "Name of the DynamoDB table used by the dev environment."
+  value       = module.dynamodb.table_name
+}
+
+output "dynamodb_table_arn" {
+  description = "ARN of the DynamoDB table used by the dev environment."
+  value       = module.dynamodb.table_arn
+}
