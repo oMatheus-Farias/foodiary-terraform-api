@@ -4,6 +4,21 @@ moved {
 }
 
 moved {
+  from = aws_apigatewayv2_api.main
+  to   = module.api_gateway.aws_apigatewayv2_api.main
+}
+
+moved {
+  from = aws_apigatewayv2_stage.dev
+  to   = module.api_gateway.aws_apigatewayv2_stage.main
+}
+
+moved {
+  from = aws_cloudwatch_log_group.api_access
+  to   = module.api_gateway.aws_cloudwatch_log_group.api_access
+}
+
+moved {
   from = aws_iam_role.hello
   to   = aws_iam_role.sign_up
 }

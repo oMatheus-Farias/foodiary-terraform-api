@@ -1,6 +1,6 @@
 output "sign_up_url" {
   description = "Public URL for the user registration route"
-  value       = "${aws_apigatewayv2_stage.dev.invoke_url}/auth/sign-up"
+  value       = "${module.api_gateway.invoke_url}/auth/sign-up"
 }
 
 output "pre_sign_up_trigger_function_name" {
