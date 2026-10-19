@@ -19,6 +19,46 @@ moved {
 }
 
 moved {
+  from = aws_cognito_user_pool.main
+  to   = module.auth.aws_cognito_user_pool.main
+}
+
+moved {
+  from = aws_cognito_user_pool_client.main
+  to   = module.auth.aws_cognito_user_pool_client.main
+}
+
+moved {
+  from = aws_apigatewayv2_integration.sign_up
+  to   = module.auth.aws_apigatewayv2_integration.sign_up
+}
+
+moved {
+  from = aws_apigatewayv2_route.sign_up
+  to   = module.auth.aws_apigatewayv2_route.sign_up
+}
+
+moved {
+  from = aws_lambda_permission.sign_up_from_api_gateway
+  to   = module.auth.aws_lambda_permission.sign_up_from_api_gateway
+}
+
+moved {
+  from = aws_lambda_permission.pre_sign_up_trigger_from_cognito
+  to   = module.auth.aws_lambda_permission.pre_sign_up_trigger_from_cognito
+}
+
+moved {
+  from = module.sign_up
+  to   = module.auth.module.sign_up
+}
+
+moved {
+  from = module.pre_sign_up_trigger
+  to   = module.auth.module.pre_sign_up_trigger
+}
+
+moved {
   from = aws_iam_role.hello
   to   = aws_iam_role.sign_up
 }

@@ -1,5 +1,5 @@
 resource "aws_cognito_user_pool" "main" {
-  name                = "${local.project_name}-${var.environment}-UserPool"
+  name                = "${var.project_name}-${var.environment}-UserPool"
   deletion_protection = "INACTIVE"
   mfa_configuration   = "OFF"
   user_pool_tier      = "ESSENTIALS"
@@ -46,7 +46,7 @@ resource "aws_cognito_user_pool" "main" {
 }
 
 resource "aws_cognito_user_pool_client" "main" {
-  name         = "${local.project_name}-${var.environment}-UserPoolClient"
+  name         = "${var.project_name}-${var.environment}-UserPoolClient"
   user_pool_id = aws_cognito_user_pool.main.id
 
   generate_secret     = true

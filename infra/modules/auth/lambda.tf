@@ -1,7 +1,7 @@
 module "sign_up" {
-  source = "../../modules/lambda"
+  source = "../lambda"
 
-  function_name         = "${local.project_name}-${var.environment}-sign-up"
+  function_name         = "${var.project_name}-${var.environment}-sign-up"
   handler               = "signUp.handler"
   filename              = data.archive_file.sign_up.output_path
   source_code_hash      = data.archive_file.sign_up.output_base64sha256
@@ -15,9 +15,9 @@ module "sign_up" {
 }
 
 module "pre_sign_up_trigger" {
-  source = "../../modules/lambda"
+  source = "../lambda"
 
-  function_name    = "${local.project_name}-${var.environment}-pre-sign-up-trigger"
+  function_name    = "${var.project_name}-${var.environment}-pre-sign-up-trigger"
   handler          = "preSignUpTrigger.handler"
   filename         = data.archive_file.pre_sign_up_trigger.output_path
   source_code_hash = data.archive_file.pre_sign_up_trigger.output_base64sha256
