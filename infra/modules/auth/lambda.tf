@@ -11,6 +11,7 @@ module "sign_up" {
     COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
     COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
     COGNITO_POOL_ID       = aws_cognito_user_pool.main.id
+    MAIN_TABLE_NAME       = var.main_table_name
   }
 }
 

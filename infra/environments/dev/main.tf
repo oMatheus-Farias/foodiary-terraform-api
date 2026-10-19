@@ -16,6 +16,8 @@ module "auth" {
   api_invoke_url    = module.api_gateway.invoke_url
   source_account_id = data.aws_caller_identity.current.account_id
   distribution_path = "${path.module}/../../../dist"
+  main_table_arn    = module.dynamodb.table_arn
+  main_table_name   = module.dynamodb.table_name
 }
 
 module "dynamodb" {

@@ -23,6 +23,16 @@ variable "environment" {
   type        = string
 }
 
+variable "main_table_arn" {
+  description = "ARN of the DynamoDB table used by the sign-up function."
+  type        = string
+}
+
+variable "main_table_name" {
+  description = "Name of the DynamoDB table passed to the sign-up function."
+  type        = string
+}
+
 variable "distribution_path" {
   description = "Path to the root deployment bundles directory, relative to the environment root."
   type        = string
