@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm run typecheck && node esbuild.config.mjs",
+    "build": "rm -rf dist && pnpm run typecheck && node esbuild.config.mjs",
     "typecheck": "tsc --noEmit",
     "prepare": "husky"
   },
@@ -41,8 +41,8 @@
     "@aws-sdk/client-cognito-identity-provider": "^3.1152.0",
     "@aws-sdk/client-dynamodb": "^3.1152.0",
     "@aws-sdk/lib-dynamodb": "^3.1152.0",
-    "ksuid": "^3.0.0",
     "reflect-metadata": "^0.2.2",
+    "uuid": "^14.0.3",
     "zod": "^4.6.7"
   }
 }
