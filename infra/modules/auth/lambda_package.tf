@@ -9,3 +9,9 @@ data "archive_file" "pre_sign_up_trigger" {
   source_file = "${var.distribution_path}/preSignUpTrigger.mjs"
   output_path = "${var.distribution_path}/preSignUpTrigger.zip"
 }
+
+data "archive_file" "sign_in" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/signIn.mjs"
+  output_path = "${var.distribution_path}/signIn.zip"
+}

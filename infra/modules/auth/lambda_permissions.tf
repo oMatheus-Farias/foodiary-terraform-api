@@ -18,3 +18,15 @@ resource "aws_lambda_permission" "sign_up_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "sign_in_from_api_gateway" {
+  statement_id  = "AllowExecutionFrom${var.environment}PostAuthSignInRoute"
+  action        = "lambda:InvokeFunction"
+  function_name = module.sign_in.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_execution_arn}/${var.api_stage_name}/POST/auth/sign-in"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

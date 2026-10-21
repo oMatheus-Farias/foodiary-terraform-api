@@ -7,3 +7,8 @@ output "sign_up_url" {
   description = "Public URL for the user registration route."
   value       = "${var.api_invoke_url}/auth/sign-up"
 }
+
+output "sign_in_url" {
+  description = "Public URL for the sign-in route."
+  value       = "${var.api_invoke_url}/auth/sign-in"
+}

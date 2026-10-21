@@ -23,3 +23,21 @@ module "pre_sign_up_trigger" {
   filename         = data.archive_file.pre_sign_up_trigger.output_path
   source_code_hash = data.archive_file.pre_sign_up_trigger.output_base64sha256
 }
+
+module "sign_in" {
+  source = "../lambda"
+
+  function_name    = "${var.project_name}-${var.environment}-sign-in"
+  handler          = "signIn.handler"
+  filename         = data.archive_file.sign_in.output_path
+  source_code_hash = data.archive_file.sign_in.output_base64sha256
+
+  configure_environment = true
+
+  environment_variables = {
+    COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
+    COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
+    COGNITO_POOL_ID       = aws_cognito_user_pool.main.id
+    MAIN_TABLE_NAME       = var.main_table_name
+  }
+}
