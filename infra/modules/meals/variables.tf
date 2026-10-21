@@ -32,3 +32,8 @@ variable "project_name" {
   description = "Project name used to name auth resources."
   type        = string
 }
+
+variable "cognito_jwt_authorizer_id" {
+  description = "ID of the Cognito JWT authorizer used to protect the meals routes."
+  type        = string
+}

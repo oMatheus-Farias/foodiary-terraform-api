@@ -9,7 +9,8 @@ resource "aws_apigatewayv2_integration" "create_meal" {
 resource "aws_apigatewayv2_route" "create_meal" {
   api_id             = var.api_id
   route_key          = "POST /meals"
-  authorization_type = "NONE"
+  authorization_type = "JWT"
+  authorizer_id      = var.cognito_jwt_authorizer_id
   target             = "integrations/${aws_apigatewayv2_integration.create_meal.id}"
 
   depends_on = [aws_lambda_permission.create_meal_from_api_gateway]
