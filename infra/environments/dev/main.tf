@@ -26,3 +26,15 @@ module "dynamodb" {
   project_name = local.project_name
   environment  = var.environment
 }
+
+module "meals" {
+  source = "../../modules/meals"
+
+  project_name      = local.project_name
+  environment       = var.environment
+  api_id            = module.api_gateway.api_id
+  api_execution_arn = module.api_gateway.execution_arn
+  api_stage_name    = module.api_gateway.stage_name
+  api_invoke_url    = module.api_gateway.invoke_url
+  distribution_path = "${path.module}/../../../dist"
+}

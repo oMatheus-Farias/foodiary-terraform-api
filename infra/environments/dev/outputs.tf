@@ -17,3 +17,8 @@ output "dynamodb_table_arn" {
   description = "ARN of the DynamoDB table used by the dev environment."
   value       = module.dynamodb.table_arn
 }
+
+output "create_meal_url" {
+  description = "Public URL for the meal creation test route."
+  value       = module.meals.create_meal_url
+}
