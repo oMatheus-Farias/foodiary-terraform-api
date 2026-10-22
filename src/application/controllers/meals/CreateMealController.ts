@@ -1,14 +1,15 @@
 import { Controller } from '@application/contracts/Controller';
 import { Injectable } from '@kernel/decorators/Injectable';
-import { v7 as uuidv7 } from 'uuid';
 
 @Injectable()
 export class CreateMealController extends Controller<'private', CreateMealController.Response> {
-  protected override async handle(): Promise<Controller.Response<CreateMealController.Response>> {
+  protected override async handle({
+    accountId,
+  }: Controller.Request<'private'>): Promise<Controller.Response<CreateMealController.Response>> {
     return {
       statusCode: 201,
       body: {
-        mealId: uuidv7(),
+        accountId: accountId ?? "'accountId' is null, this should never happen",
       },
     };
   }
@@ -16,6 +17,6 @@ export class CreateMealController extends Controller<'private', CreateMealContro
 
 export namespace CreateMealController {
   export type Response = {
-    mealId: string;
+    accountId: string;
   };
 }
