@@ -15,3 +15,9 @@ data "archive_file" "sign_in" {
   source_file = "${var.distribution_path}/signIn.mjs"
   output_path = "${var.distribution_path}/signIn.zip"
 }
+
+data "archive_file" "pre_token_generation_trigger" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/preTokenGenerationTrigger.mjs"
+  output_path = "${var.distribution_path}/preTokenGenerationTrigger.zip"
+}

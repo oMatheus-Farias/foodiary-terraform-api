@@ -30,3 +30,12 @@ resource "aws_lambda_permission" "sign_in_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "pre_token_generation_trigger_from_cognito" {
+  statement_id   = "AllowExecutionFromCognitoPreTokenGeneration"
+  action         = "lambda:InvokeFunction"
+  function_name  = module.pre_token_generation_trigger.function_name
+  principal      = "cognito-idp.amazonaws.com"
+  source_arn     = aws_cognito_user_pool.main.arn
+  source_account = var.source_account_id
+}

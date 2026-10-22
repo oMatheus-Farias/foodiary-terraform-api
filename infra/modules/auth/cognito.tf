@@ -9,6 +9,11 @@ resource "aws_cognito_user_pool" "main" {
 
   lambda_config {
     pre_sign_up = module.pre_sign_up_trigger.arn
+
+    pre_token_generation_config {
+      lambda_arn     = module.pre_token_generation_trigger.arn
+      lambda_version = "V2_0"
+    }
   }
 
   admin_create_user_config {

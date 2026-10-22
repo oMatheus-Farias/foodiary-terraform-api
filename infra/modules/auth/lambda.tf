@@ -6,6 +6,7 @@ module "sign_up" {
   filename              = data.archive_file.sign_up.output_path
   source_code_hash      = data.archive_file.sign_up.output_base64sha256
   configure_environment = true
+  timeout               = 10
 
   environment_variables = {
     COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
@@ -40,4 +41,13 @@ module "sign_in" {
     COGNITO_POOL_ID       = aws_cognito_user_pool.main.id
     MAIN_TABLE_NAME       = var.main_table_name
   }
+}
+
+module "pre_token_generation_trigger" {
+  source = "../lambda"
+
+  function_name    = "${var.project_name}-${var.environment}-pre-token-generation-trigger"
+  handler          = "preTokenGenerationTrigger.handler"
+  filename         = data.archive_file.pre_token_generation_trigger.output_path
+  source_code_hash = data.archive_file.pre_token_generation_trigger.output_base64sha256
 }
