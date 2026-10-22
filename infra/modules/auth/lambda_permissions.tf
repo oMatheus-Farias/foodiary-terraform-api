@@ -39,3 +39,15 @@ resource "aws_lambda_permission" "pre_token_generation_trigger_from_cognito" {
   source_arn     = aws_cognito_user_pool.main.arn
   source_account = var.source_account_id
 }
+
+resource "aws_lambda_permission" "refresh_token_from_api_gateway" {
+  statement_id  = "AllowExecutionFrom${var.environment}PostAuthRefreshTokenRoute"
+  action        = "lambda:InvokeFunction"
+  function_name = module.refresh_token.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_execution_arn}/${var.api_stage_name}/POST/auth/refresh-token"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

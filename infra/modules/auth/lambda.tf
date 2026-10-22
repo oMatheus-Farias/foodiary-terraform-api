@@ -51,3 +51,19 @@ module "pre_token_generation_trigger" {
   filename         = data.archive_file.pre_token_generation_trigger.output_path
   source_code_hash = data.archive_file.pre_token_generation_trigger.output_base64sha256
 }
+
+module "refresh_token" {
+  source = "../lambda"
+
+  function_name         = "${var.project_name}-${var.environment}-refresh-token"
+  handler               = "refreshToken.handler"
+  filename              = data.archive_file.refresh_token.output_path
+  source_code_hash      = data.archive_file.refresh_token.output_base64sha256
+  timeout               = 10
+  configure_environment = true
+
+  environment_variables = {
+    COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
+    COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
+  }
+}

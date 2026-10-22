@@ -7,6 +7,7 @@ const entryPoints = {
   signIn: 'src/main/functions/auth/signIn.ts',
   createMeal: 'src/main/functions/meals/createMeal.ts',
   preTokenGenerationTrigger: 'src/main/functions/auth/cognito/preTokenGenerationTrigger.ts',
+  refreshToken: 'src/main/functions/auth/refreshToken.ts',
 };
 
 await build({

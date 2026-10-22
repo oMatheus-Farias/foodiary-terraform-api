@@ -1,28 +1,39 @@
 import { Injectable } from '@kernel/decorators/Injectable';
 
-import { env } from './env';
+import { getCognitoClientEnv, getCognitoPoolEnv, getDynamoDbEnv } from './env';
 
 @Injectable()
 export class AppConfig {
-  readonly auth: AppConfig.Auth;
-  readonly database: AppConfig.Database;
-
-  constructor() {
-    this.auth = {
+  get auth(): AppConfig.Auth {
+    return {
       cognito: {
-        client: {
-          id: env.COGNITO_CLIENT_ID,
-          secret: env.COGNITO_CLIENT_SECRET,
+        get client() {
+          const env = getCognitoClientEnv();
+
+          return {
+            id: env.COGNITO_CLIENT_ID,
+            secret: env.COGNITO_CLIENT_SECRET,
+          };
         },
-        pool: {
-          id: env.COGNITO_POOL_ID,
+        get pool() {
+          const env = getCognitoPoolEnv();
+
+          return {
+            id: env.COGNITO_POOL_ID,
+          };
         },
       },
     };
+  }
 
-    this.database = {
+  get database(): AppConfig.Database {
+    return {
       dynamodb: {
-        mainTableName: env.MAIN_TABLE_NAME,
+        get mainTableName() {
+          const env = getDynamoDbEnv();
+
+          return env.MAIN_TABLE_NAME;
+        },
       },
     };
   }

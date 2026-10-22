@@ -3,6 +3,11 @@ output "sign_up_url" {
   value       = module.auth.sign_up_url
 }
 
+output "refresh_token_url" {
+  description = "Public URL for the refresh-token route."
+  value       = module.auth.refresh_token_url
+}
+
 output "pre_sign_up_trigger_function_name" {
   description = "Name of the Cognito pre-sign-up trigger Lambda function."
   value       = module.auth.pre_sign_up_trigger_function_name

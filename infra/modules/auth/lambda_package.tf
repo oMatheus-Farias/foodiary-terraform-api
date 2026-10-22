@@ -21,3 +21,9 @@ data "archive_file" "pre_token_generation_trigger" {
   source_file = "${var.distribution_path}/preTokenGenerationTrigger.mjs"
   output_path = "${var.distribution_path}/preTokenGenerationTrigger.zip"
 }
+
+data "archive_file" "refresh_token" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/refreshToken.mjs"
+  output_path = "${var.distribution_path}/refreshToken.zip"
+}
