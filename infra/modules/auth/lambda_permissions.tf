@@ -63,3 +63,15 @@ resource "aws_lambda_permission" "forgot_password_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "confirm_forgot_password_from_api_gateway" {
+  statement_id  = "AllowExecutionFrom${var.environment}PostAuthConfirmForgotPasswordRoute"
+  action        = "lambda:InvokeFunction"
+  function_name = module.confirm_forgot_password.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_execution_arn}/${var.api_stage_name}/POST/auth/confirm-forgot-password"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

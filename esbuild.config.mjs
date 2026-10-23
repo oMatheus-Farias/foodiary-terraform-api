@@ -9,6 +9,7 @@ const entryPoints = {
   preTokenGenerationTrigger: 'src/main/functions/auth/cognito/preTokenGenerationTrigger.ts',
   refreshToken: 'src/main/functions/auth/refreshToken.ts',
   forgotPassword: 'src/main/functions/auth/forgotPassword.ts',
+  confirmForgotPassword: 'src/main/functions/auth/confirmForgotPassword.ts',
 };
 
 await build({

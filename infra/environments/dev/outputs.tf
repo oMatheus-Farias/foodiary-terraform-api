@@ -13,6 +13,11 @@ output "forgot_password_url" {
   value       = module.auth.forgot_password_url
 }
 
+output "confirm_forgot_password_url" {
+  description = "Public URL for the confirm-forgot-password route."
+  value       = module.auth.confirm_forgot_password_url
+}
+
 output "pre_sign_up_trigger_function_name" {
   description = "Name of the Cognito pre-sign-up trigger Lambda function."
   value       = module.auth.pre_sign_up_trigger_function_name

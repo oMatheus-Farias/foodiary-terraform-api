@@ -33,3 +33,9 @@ data "archive_file" "forgot_password" {
   source_file = "${var.distribution_path}/forgotPassword.mjs"
   output_path = "${var.distribution_path}/forgotPassword.zip"
 }
+
+data "archive_file" "confirm_forgot_password" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/confirmForgotPassword.mjs"
+  output_path = "${var.distribution_path}/confirmForgotPassword.zip"
+}
