@@ -22,3 +22,8 @@ output "cognito_jwt_authorizer_id" {
   description = "ID of the Cognito JWT authorizer for protected API routes."
   value       = aws_apigatewayv2_authorizer.cognito.id
 }
+
+output "forgot_password_url" {
+  description = "Public URL for the forgot-password route."
+  value       = "${var.api_invoke_url}/auth/forgot-password"
+}

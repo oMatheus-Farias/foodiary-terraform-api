@@ -8,6 +8,11 @@ output "refresh_token_url" {
   value       = module.auth.refresh_token_url
 }
 
+output "forgot_password_url" {
+  description = "Public URL for the forgot-password route."
+  value       = module.auth.forgot_password_url
+}
+
 output "pre_sign_up_trigger_function_name" {
   description = "Name of the Cognito pre-sign-up trigger Lambda function."
   value       = module.auth.pre_sign_up_trigger_function_name

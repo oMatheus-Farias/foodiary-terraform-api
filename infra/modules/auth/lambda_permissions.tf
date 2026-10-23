@@ -51,3 +51,15 @@ resource "aws_lambda_permission" "refresh_token_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "forgot_password_from_api_gateway" {
+  statement_id  = "AllowExecutionFrom${var.environment}PostAuthForgotPasswordRoute"
+  action        = "lambda:InvokeFunction"
+  function_name = module.forgot_password.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_execution_arn}/${var.api_stage_name}/POST/auth/forgot-password"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

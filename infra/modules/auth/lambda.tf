@@ -67,3 +67,19 @@ module "refresh_token" {
     COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
   }
 }
+
+module "forgot_password" {
+  source = "../lambda"
+
+  function_name         = "${var.project_name}-${var.environment}-forgot-password"
+  handler               = "forgotPassword.handler"
+  filename              = data.archive_file.forgot_password.output_path
+  source_code_hash      = data.archive_file.forgot_password.output_base64sha256
+  timeout               = 10
+  configure_environment = true
+
+  environment_variables = {
+    COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
+    COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
+  }
+}
