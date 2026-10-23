@@ -39,3 +39,9 @@ data "archive_file" "confirm_forgot_password" {
   source_file = "${var.distribution_path}/confirmForgotPassword.mjs"
   output_path = "${var.distribution_path}/confirmForgotPassword.zip"
 }
+
+data "archive_file" "custom_message_trigger" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/customMessageTrigger.mjs"
+  output_path = "${var.distribution_path}/customMessageTrigger.zip"
+}

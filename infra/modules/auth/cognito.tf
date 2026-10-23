@@ -8,12 +8,19 @@ resource "aws_cognito_user_pool" "main" {
   username_attributes      = ["email"]
 
   lambda_config {
-    pre_sign_up = module.pre_sign_up_trigger.arn
+    pre_sign_up    = module.pre_sign_up_trigger.arn
+    custom_message = module.custom_message_trigger.arn
 
     pre_token_generation_config {
       lambda_arn     = module.pre_token_generation_trigger.arn
       lambda_version = "V2_0"
     }
+  }
+
+  email_configuration {
+    email_sending_account = "DEVELOPER"
+    source_arn            = var.ses_identity_arn
+    from_email_address    = var.ses_from_email_address
   }
 
   admin_create_user_config {

@@ -3,13 +3,14 @@ import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
 const entryPoints = {
   signUp: 'src/main/functions/auth/signUp.ts',
-  preSignUpTrigger: 'src/main/functions/auth/cognito/preSignUpTrigger.ts',
   signIn: 'src/main/functions/auth/signIn.ts',
-  createMeal: 'src/main/functions/meals/createMeal.ts',
-  preTokenGenerationTrigger: 'src/main/functions/auth/cognito/preTokenGenerationTrigger.ts',
   refreshToken: 'src/main/functions/auth/refreshToken.ts',
   forgotPassword: 'src/main/functions/auth/forgotPassword.ts',
   confirmForgotPassword: 'src/main/functions/auth/confirmForgotPassword.ts',
+  preSignUpTrigger: 'src/main/functions/auth/cognito/preSignUpTrigger.ts',
+  preTokenGenerationTrigger: 'src/main/functions/auth/cognito/preTokenGenerationTrigger.ts',
+  customMessageTrigger: 'src/main/functions/auth/cognito/customMessageTrigger.ts',
+  createMeal: 'src/main/functions/meals/createMeal.ts',
 };
 
 await build({
@@ -23,6 +24,9 @@ await build({
   platform: 'node',
   target: 'node24',
   format: 'esm',
+  banner: {
+    js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);",
+  },
   external: ['@aws-sdk/*'],
   plugins: [esbuildPluginTsc()],
 });

@@ -75,7 +75,7 @@ module "forgot_password" {
   handler               = "forgotPassword.handler"
   filename              = data.archive_file.forgot_password.output_path
   source_code_hash      = data.archive_file.forgot_password.output_base64sha256
-  timeout               = 10
+  timeout               = 20
   configure_environment = true
 
   environment_variables = {
@@ -98,4 +98,15 @@ module "confirm_forgot_password" {
     COGNITO_CLIENT_ID     = aws_cognito_user_pool_client.main.id
     COGNITO_CLIENT_SECRET = aws_cognito_user_pool_client.main.client_secret
   }
+}
+
+module "custom_message_trigger" {
+  source = "../lambda"
+
+  function_name    = "${var.project_name}-${var.environment}-custom-message-trigger"
+  handler          = "customMessageTrigger.handler"
+  filename         = data.archive_file.custom_message_trigger.output_path
+  source_code_hash = data.archive_file.custom_message_trigger.output_base64sha256
+  timeout          = 5
+  memory_size      = 256
 }

@@ -43,6 +43,18 @@ variable "project_name" {
   type        = string
 }
 
+variable "ses_from_email_address" {
+  description = "Verified sender email address used by Cognito through Amazon SES."
+  type        = string
+  sensitive   = true
+}
+
+variable "ses_identity_arn" {
+  description = "ARN of the verified Amazon SES email identity used by the Cognito user pool."
+  type        = string
+  sensitive   = true
+}
+
 variable "source_account_id" {
   description = "AWS account ID used to scope Cognito invocation permission."
   type        = string

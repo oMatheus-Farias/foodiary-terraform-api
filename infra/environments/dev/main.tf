@@ -18,6 +18,9 @@ module "auth" {
   distribution_path = "${path.module}/../../../dist"
   main_table_arn    = module.dynamodb.table_arn
   main_table_name   = module.dynamodb.table_name
+
+  ses_from_email_address = var.ses_from_email_address
+  ses_identity_arn       = var.ses_identity_arn
 }
 
 module "dynamodb" {

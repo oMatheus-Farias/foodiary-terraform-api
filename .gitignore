@@ -9,6 +9,7 @@
 *.tfstate.*
 crash.log
 crash.*.log
+*.local.auto.tfvars
 
 # Logs
 logs

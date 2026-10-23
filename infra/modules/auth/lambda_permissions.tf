@@ -75,3 +75,12 @@ resource "aws_lambda_permission" "confirm_forgot_password_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "custom_message_trigger_from_cognito" {
+  statement_id   = "AllowExecutionFromCognitoCustomMessage"
+  action         = "lambda:InvokeFunction"
+  function_name  = module.custom_message_trigger.function_name
+  principal      = "cognito-idp.amazonaws.com"
+  source_arn     = aws_cognito_user_pool.main.arn
+  source_account = var.source_account_id
+}
