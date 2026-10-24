@@ -37,3 +37,8 @@ output "create_meal_url" {
   description = "Public URL for the meal creation test route."
   value       = module.meals.create_meal_url
 }
+
+output "get_me_url" {
+  description = "URL of the authenticated get-me route."
+  value       = module.accounts.get_me_url
+}
