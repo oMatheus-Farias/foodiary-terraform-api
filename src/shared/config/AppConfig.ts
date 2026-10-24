@@ -1,6 +1,6 @@
 import { Injectable } from '@kernel/decorators/Injectable';
 
-import { getCognitoClientEnv, getCognitoPoolEnv, getDynamoDbEnv } from './env';
+import { getCDNEnv, getCognitoClientEnv, getCognitoPoolEnv, getDynamoDbEnv, getS3Env } from './env';
 
 @Injectable()
 export class AppConfig {
@@ -37,6 +37,28 @@ export class AppConfig {
       },
     };
   }
+
+  get storage(): AppConfig.Storage {
+    return {
+      s3: {
+        get mealsBucket() {
+          const env = getS3Env();
+
+          return env.MEALS_BUCKET;
+        },
+      },
+    };
+  }
+
+  get cdns(): AppConfig.CDNs {
+    return {
+      get mealsCDN() {
+        const env = getCDNEnv();
+
+        return env.MEALS_CDN_DOMAIN_NAME;
+      },
+    };
+  }
 }
 
 export namespace AppConfig {
@@ -56,5 +78,15 @@ export namespace AppConfig {
     dynamodb: {
       mainTableName: string;
     };
+  };
+
+  export type Storage = {
+    s3: {
+      mealsBucket: string;
+    };
+  };
+
+  export type CDNs = {
+    mealsCDN: string;
   };
 }

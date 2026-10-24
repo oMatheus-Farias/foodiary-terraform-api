@@ -18,6 +18,11 @@ variable "api_stage_name" {
   type        = string
 }
 
+variable "aws_account_id" {
+  description = "AWS account ID used to make the meals bucket name globally unique."
+  type        = string
+}
+
 variable "environment" {
   description = "Environment used to name auth resources."
   type        = string
@@ -35,5 +40,15 @@ variable "project_name" {
 
 variable "cognito_jwt_authorizer_id" {
   description = "ID of the Cognito JWT authorizer used to protect the meals routes."
+  type        = string
+}
+
+variable "main_table_arn" {
+  description = "ARN of the main DynamoDB table where create-meal writes meal items."
+  type        = string
+}
+
+variable "main_table_name" {
+  description = "Name of the main DynamoDB table passed to the create-meal function."
   type        = string
 }
