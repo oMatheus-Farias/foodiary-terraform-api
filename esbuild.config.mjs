@@ -13,6 +13,7 @@ const entryPoints = {
   customMessageTrigger: 'src/main/functions/auth/cognito/customMessageTrigger.ts',
   // Meal functions
   createMeal: 'src/main/functions/meals/createMeal.ts',
+  listMealsByDay: 'src/main/functions/meals/listMealsByDay.ts',
   // Account functions
   getMe: 'src/main/functions/accounts/getMe.ts',
 };

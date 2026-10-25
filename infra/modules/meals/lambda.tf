@@ -12,3 +12,17 @@ module "create_meal" {
     MAIN_TABLE_NAME = var.main_table_name
   }
 }
+
+module "list_meals_by_day" {
+  source = "../lambda"
+
+  function_name         = "${var.project_name}-${var.environment}-list-meals-by-day"
+  handler               = "listMealsByDay.handler"
+  filename              = data.archive_file.list_meals_by_day.output_path
+  source_code_hash      = data.archive_file.list_meals_by_day.output_base64sha256
+  configure_environment = true
+
+  environment_variables = {
+    MAIN_TABLE_NAME = var.main_table_name
+  }
+}

@@ -38,6 +38,11 @@ output "create_meal_url" {
   value       = module.meals.create_meal_url
 }
 
+output "list_meals_by_day_url" {
+  description = "URL of the authenticated route for listing meals by day."
+  value       = module.meals.list_meals_by_day_url
+}
+
 output "get_me_url" {
   description = "URL of the authenticated get-me route."
   value       = module.accounts.get_me_url
