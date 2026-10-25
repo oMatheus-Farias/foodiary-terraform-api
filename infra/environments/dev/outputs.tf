@@ -43,6 +43,16 @@ output "list_meals_by_day_url" {
   value       = module.meals.list_meals_by_day_url
 }
 
+output "get_meal_by_id_url" {
+  description = "URL of the authenticated get-meal-by-id route."
+  value       = module.meals.get_meal_by_id_url
+}
+
+output "meals_cdn_domain_name" {
+  description = "CloudFront domain serving objects from the meals bucket."
+  value       = module.meals.meals_cdn_domain_name
+}
+
 output "get_me_url" {
   description = "URL of the authenticated get-me route."
   value       = module.accounts.get_me_url

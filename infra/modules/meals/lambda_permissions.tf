@@ -21,3 +21,15 @@ resource "aws_lambda_permission" "list_meals_by_day_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "get_meal_by_id_from_api_gateway" {
+  statement_id  = "AllowExecutionFrom${var.environment}GetMealByIdRoute"
+  action        = "lambda:InvokeFunction"
+  function_name = module.get_meal_by_id.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${var.api_execution_arn}/${var.api_stage_name}/GET/meals/*"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

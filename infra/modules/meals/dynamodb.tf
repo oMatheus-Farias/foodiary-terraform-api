@@ -25,3 +25,17 @@ resource "aws_iam_role_policy" "list_meals_by_day_dynamodb" {
   policy = data.aws_iam_policy_document.list_meals_by_day_dynamodb.json
   role   = module.list_meals_by_day.execution_role_name
 }
+
+data "aws_iam_policy_document" "get_meal_by_id_dynamodb" {
+  statement {
+    sid       = "GetMealByIdInMainTable"
+    actions   = ["dynamodb:GetItem"]
+    resources = [var.main_table_arn]
+  }
+}
+
+resource "aws_iam_role_policy" "get_meal_by_id_dynamodb" {
+  name   = "${var.project_name}-${var.environment}-get-meal-by-id-dynamodb"
+  policy = data.aws_iam_policy_document.get_meal_by_id_dynamodb.json
+  role   = module.get_meal_by_id.execution_role_name
+}

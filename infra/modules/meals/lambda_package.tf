@@ -9,3 +9,9 @@ data "archive_file" "list_meals_by_day" {
   source_file = "${var.distribution_path}/listMealsByDay.mjs"
   output_path = "${var.distribution_path}/listMealsByDay.zip"
 }
+
+data "archive_file" "get_meal_by_id" {
+  type        = "zip"
+  source_file = "${var.distribution_path}/getMealById.mjs"
+  output_path = "${var.distribution_path}/getMealById.zip"
+}
