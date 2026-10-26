@@ -57,3 +57,8 @@ output "get_me_url" {
   description = "URL of the authenticated get-me route."
   value       = module.accounts.get_me_url
 }
+
+output "update_profile_url" {
+  description = "URL of the authenticated update-profile route."
+  value       = module.profiles.update_profile_url
+}

@@ -17,6 +17,8 @@ const entryPoints = {
   getMealById: 'src/main/functions/meals/getMealById.ts',
   // Account functions
   getMe: 'src/main/functions/accounts/getMe.ts',
+  // Profile functions
+  updateProfile: 'src/main/functions/profiles/updateProfile.ts',
 };
 
 await build({
