@@ -19,6 +19,8 @@ const entryPoints = {
   getMe: 'src/main/functions/accounts/getMe.ts',
   // Profile functions
   updateProfile: 'src/main/functions/profiles/updateProfile.ts',
+  // Goal functions
+  updateGoal: 'src/main/functions/goals/updateGoal.ts',
 };
 
 await build({

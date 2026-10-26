@@ -62,3 +62,8 @@ output "update_profile_url" {
   description = "URL of the authenticated update-profile route."
   value       = module.profiles.update_profile_url
 }
+
+output "update_goal_url" {
+  description = "URL of the authenticated update-goal route."
+  value       = module.goals.update_goal_url
+}

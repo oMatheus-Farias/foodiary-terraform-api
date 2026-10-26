@@ -1,5 +1,5 @@
 output "create_meal_url" {
-  description = "Public URL for the meal creation test route."
+  description = "URL of the authenticated route for the meal creation."
   value       = "${var.api_invoke_url}/meals"
 }
 
