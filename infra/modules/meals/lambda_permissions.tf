@@ -33,3 +33,16 @@ resource "aws_lambda_permission" "get_meal_by_id_from_api_gateway" {
     create_before_destroy = true
   }
 }
+
+resource "aws_lambda_permission" "on_meal_file_uploaded_from_s3" {
+  statement_id   = "AllowExecutionFromMealsBucketObjectCreated"
+  action         = "lambda:InvokeFunction"
+  function_name  = module.on_meal_file_uploaded.function_name
+  principal      = "s3.amazonaws.com"
+  source_arn     = aws_s3_bucket.meals.arn
+  source_account = var.aws_account_id
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

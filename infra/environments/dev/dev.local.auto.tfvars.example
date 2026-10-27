@@ -1,3 +1,5 @@
 # Copy this file to dev.local.auto.tfvars and replace these examples with your verified SES identity.
 ses_identity_arn       = "arn:aws:ses:us-east-1:123456789012:identity/example.com"
 ses_from_email_address = "Foodiary <no-reply@example.com>"
+dlq_alarm_email        = "you@example.com"
+openai_api_key         = "replace-with-your-openai-api-key"

@@ -15,6 +15,8 @@ const entryPoints = {
   createMeal: 'src/main/functions/meals/createMeal.ts',
   listMealsByDay: 'src/main/functions/meals/listMealsByDay.ts',
   getMealById: 'src/main/functions/meals/getMealById.ts',
+  onMealFileUploaded: 'src/main/functions/meals/onMealFileUploaded.ts',
+  processMeal: 'src/main/functions/meals/processMeal.ts',
   // Account functions
   getMe: 'src/main/functions/accounts/getMe.ts',
   // Profile functions

@@ -1,6 +1,13 @@
 import { Injectable } from '@kernel/decorators/Injectable';
 
-import { getCDNEnv, getCognitoClientEnv, getCognitoPoolEnv, getDynamoDbEnv, getS3Env } from './env';
+import {
+  getCDNEnv,
+  getCognitoClientEnv,
+  getCognitoPoolEnv,
+  getDynamoDbEnv,
+  getQueuesEnv,
+  getS3Env,
+} from './env';
 
 @Injectable()
 export class AppConfig {
@@ -59,6 +66,16 @@ export class AppConfig {
       },
     };
   }
+
+  get queues(): AppConfig.Queues {
+    return {
+      get mealsQueueURL() {
+        const env = getQueuesEnv();
+
+        return env.MEALS_QUEUE_URL;
+      },
+    };
+  }
 }
 
 export namespace AppConfig {
@@ -88,5 +105,9 @@ export namespace AppConfig {
 
   export type CDNs = {
     mealsCDN: string;
+  };
+
+  export type Queues = {
+    mealsQueueURL: string;
   };
 }

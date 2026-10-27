@@ -33,6 +33,12 @@ variable "distribution_path" {
   type        = string
 }
 
+variable "dlq_alarm_email" {
+  description = "Email address subscribed to notifications when the meals dead-letter queue receives messages."
+  type        = string
+  sensitive   = true
+}
+
 variable "project_name" {
   description = "Project name used to name auth resources."
   type        = string
@@ -51,4 +57,10 @@ variable "main_table_arn" {
 variable "main_table_name" {
   description = "Name of the main DynamoDB table passed to the create-meal function."
   type        = string
+}
+
+variable "openai_api_key" {
+  description = "API key used by the process-meal Lambda to call OpenAI."
+  type        = string
+  sensitive   = true
 }

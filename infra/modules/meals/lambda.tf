@@ -41,3 +41,38 @@ module "get_meal_by_id" {
     MEALS_CDN_DOMAIN_NAME = aws_cloudfront_distribution.meals.domain_name
   }
 }
+
+module "on_meal_file_uploaded" {
+  source = "../lambda"
+
+  function_name         = "${var.project_name}-${var.environment}-on-meal-file-uploaded"
+  handler               = "onMealFileUploaded.handler"
+  filename              = data.archive_file.on_meal_file_uploaded.output_path
+  source_code_hash      = data.archive_file.on_meal_file_uploaded.output_base64sha256
+  configure_environment = true
+  timeout               = 10
+
+  environment_variables = {
+    MAIN_TABLE_NAME = var.main_table_name
+    MEALS_BUCKET    = aws_s3_bucket.meals.bucket
+    MEALS_QUEUE_URL = aws_sqs_queue.meals.url
+  }
+}
+
+module "process_meal" {
+  source = "../lambda"
+
+  function_name         = "${var.project_name}-${var.environment}-process-meal"
+  handler               = "processMeal.handler"
+  filename              = data.archive_file.process_meal.output_path
+  source_code_hash      = data.archive_file.process_meal.output_base64sha256
+  configure_environment = true
+  memory_size           = 1024
+  timeout               = 120
+
+  environment_variables = {
+    MAIN_TABLE_NAME       = var.main_table_name
+    MEALS_CDN_DOMAIN_NAME = aws_cloudfront_distribution.meals.domain_name
+    OPENAI_API_KEY        = var.openai_api_key
+  }
+}

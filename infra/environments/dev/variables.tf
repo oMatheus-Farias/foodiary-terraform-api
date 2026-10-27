@@ -8,6 +8,18 @@ variable "environment" {
   }
 }
 
+variable "openai_api_key" {
+  description = "API key used by the process-meal Lambda to call OpenAI."
+  type        = string
+  sensitive   = true
+}
+
+variable "dlq_alarm_email" {
+  description = "Email address subscribed to notifications when the meals dead-letter queue receives messages."
+  type        = string
+  sensitive   = true
+}
+
 variable "ses_from_email_address" {
   description = "Verified sender email address used by Cognito through Amazon SES."
   type        = string

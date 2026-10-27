@@ -44,6 +44,8 @@ module "meals" {
   cognito_jwt_authorizer_id = module.auth.cognito_jwt_authorizer_id
   main_table_arn            = module.dynamodb.table_arn
   main_table_name           = module.dynamodb.table_name
+  dlq_alarm_email           = var.dlq_alarm_email
+  openai_api_key            = var.openai_api_key
 }
 
 module "accounts" {
