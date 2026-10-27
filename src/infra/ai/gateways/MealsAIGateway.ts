@@ -4,7 +4,7 @@ import { Injectable } from '@kernel/decorators/Injectable';
 import OpenAI, { toFile } from 'openai';
 import type { ChatCompletionContentPart } from 'openai/resources/index';
 import { downloadFileFromURL } from 'src/utils/downloadFileFromURL';
-import z from 'zod';
+import { z } from 'zod/mini';
 
 import { MealsFileStorageGateway } from '../../gateways/MealsFileStorageGateway';
 import { getImagePrompt } from '../prompts/getImagePrompt';
@@ -95,7 +95,7 @@ export class MealsAIGateway {
     userMessageParts,
   }: MealsAIGateway.CallAIParams): Promise<MealsAIGateway.ProcessMealResult> {
     const response = await this.client.chat.completions.create({
-      model: 'gpt-4.1-mini',
+      model: 'gpt-5.6-luna',
       response_format: {
         type: 'json_schema',
         json_schema: {
